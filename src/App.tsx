@@ -3,6 +3,7 @@ import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { isDarkState } from "./atoms";
 import { darkTheme, lightTheme } from "./theme";
 import Framer from "./components/Framer";
+import Challenge from "./components/Challenge";
 
 const GlobalReset = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;600&display=swap');
@@ -40,7 +41,7 @@ body {
   font-family: 'Arimo', sans-serif;
   background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
-  background:linear-gradient(135deg,#e09,#d0e);
+
 }
 menu, ol, ul {
   list-style: none;
@@ -69,7 +70,8 @@ function App() {
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalReset />
-      <Framer />
+      {/* <Framer /> */}
+      <Challenge />
     </ThemeProvider>
   );
 }

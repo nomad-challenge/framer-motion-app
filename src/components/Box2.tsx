@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { useEffect } from "react";
 import { styled } from "styled-components";
 
@@ -12,12 +12,14 @@ const Box = styled(motion.div)`
 const Box2 = () => {
   const x = useMotionValue(0);
   const scale = useTransform(x, [-200, 0, 200], [2, 1, 0.1]);
-  console.log(x);
+  const rotate = useTransform(x, [-200, 200], [-360, 360]);
+  const { scrollYProgress } = useScroll();
+
   useEffect(() => {
-    // x.onChange(() => console.log(x.get()));
+    scrollYProgress.onChange(() => console.log(scrollYProgress.get()));
     // scale.onChange(() => console.log(scale.get()));
-  }, [scale]);
-  return <Box style={{ x, scale }} drag="x" dragSnapToOrigin></Box>;
+  }, [scrollYProgress]);
+  return <Box style={{ x, scale, rotate }} drag="x" dragSnapToOrigin></Box>;
 };
 
 export default Box2;
